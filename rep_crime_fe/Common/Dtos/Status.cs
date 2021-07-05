@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Common.Dtos
 {
-    public class CrimeReportDto
+    public enum Status
     {
+        Waiting,
+        Finished,
+        Declined
     }
 }

@@ -11,7 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Middlewares;
 using Crime.API.Data;
+using Crime.API.Data.Repositories;
 
 namespace Crime.API
 {
@@ -33,8 +35,14 @@ namespace Crime.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Crime.API", Version = "v1" });
             });
+
+            services.AddScoped<ErrorHandlingMiddleware>();
+            services.AddScoped<RequestResponseLoggingMiddleware>();
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddScoped<ICrimeContext, CrimeContext>();
+            services.AddScoped<ICrimeRepository, CrimeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +56,9 @@ namespace Crime.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseMiddleware<RequestResponseLoggingMiddleware>();
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseRouting();
 
