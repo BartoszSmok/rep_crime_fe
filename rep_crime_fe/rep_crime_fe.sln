@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawEnforcement.API", "LawEn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crime.API", "Crime.API\Crime.API.csproj", "{D5044E1D-20F4-446A-A8B5-3132B92CFC0A}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6646D7CF-9362-4DA5-A3D1-CE33AF0B184D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D5044E1D-20F4-446A-A8B5-3132B92CFC0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5044E1D-20F4-446A-A8B5-3132B92CFC0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5044E1D-20F4-446A-A8B5-3132B92CFC0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6646D7CF-9362-4DA5-A3D1-CE33AF0B184D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6646D7CF-9362-4DA5-A3D1-CE33AF0B184D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6646D7CF-9362-4DA5-A3D1-CE33AF0B184D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6646D7CF-9362-4DA5-A3D1-CE33AF0B184D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

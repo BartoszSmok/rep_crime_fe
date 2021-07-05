@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  crime.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "13000:80"
+
+  lawenforcement.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "13001:80"
+

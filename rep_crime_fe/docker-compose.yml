@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  crime.api:
+    image: ${DOCKER_REGISTRY-}crimeapi
+    build:
+      context: .
+      dockerfile: Crime.API/Dockerfile
+
+  lawenforcement.api:
+    image: ${DOCKER_REGISTRY-}lawenforcementapi
+    build:
+      context: .
+      dockerfile: LawEnforcement.API/Dockerfile
+
