@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Crime.API.Data;
 
 namespace Crime.API
 {
@@ -32,6 +33,8 @@ namespace Crime.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Crime.API", Version = "v1" });
             });
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<ICrimeContext, CrimeContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
