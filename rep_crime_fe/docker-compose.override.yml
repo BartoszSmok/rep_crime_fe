@@ -1,6 +1,20 @@
 version: '3.4'
 
 services:
+  mongosrv:
+    container_name: mongosrv
+    restart: always
+    ports:
+      - "13017:27017"
+
+  msqlsrv:
+    ports:
+      - "13433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "_Password123"
+      MSSQL_PID: Express
+
   crime.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
