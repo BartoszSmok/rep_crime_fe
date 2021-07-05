@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Common.Middlewares;
 using Crime.API.Data;
 using Crime.API.Data.Repositories;
+using Crime.API.Services;
 
 namespace Crime.API
 {
@@ -43,6 +44,7 @@ namespace Crime.API
 
             services.AddScoped<ICrimeContext, CrimeContext>();
             services.AddScoped<ICrimeRepository, CrimeRepository>();
+            services.AddScoped<ICrimeEventService, CrimeEventService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

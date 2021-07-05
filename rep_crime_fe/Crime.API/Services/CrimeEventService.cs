@@ -20,6 +20,7 @@ namespace Crime.API.Services
             _repository = repository;
             _mapper = mapper;
         }
+
         public async Task<IEnumerable<CrimeEventReadDto>> GetAllEvents()
         {
             var eventsInDb = await _repository.GetAll();
@@ -38,6 +39,8 @@ namespace Crime.API.Services
 
         public async Task<CrimeEventReadDto> PostEvent(CrimeEventPostDto dto)
         {
+            if (dto.DateOfCrime == null)
+                dto.DateOfCrime = DateTime.Now;
             var crimeEventToAdd = _mapper.Map<CrimeEvent>(dto);
             var crimeEventAdded = await _repository.Add(crimeEventToAdd);
             

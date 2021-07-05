@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  mongosrv:
+  mongosrv2:
     image: mongo
 
   msqlsrv:

@@ -8,7 +8,7 @@ namespace Common.Dtos
 {
     public class CrimeEventPostDto
     {
-        public DateTime DateOfCrime { get; set; }
+        public DateTime? DateOfCrime { get; set; }
         public string Description { get; set; }
         public int TypeOfCrimeId { get; set; }
         public string PlaceOfCrime { get; set; }
