@@ -11,6 +11,8 @@ namespace Crime.API.Data.Repositories
         Task<IEnumerable<CrimeEvent>> GetAll();
         Task<CrimeEvent> GetById(Guid id);
         Task<CrimeEvent> Add(CrimeEvent crimeEvent);
-        Task AddLawEnforcmentIdToCrimeEvent(string id);
+        Task Update(CrimeEvent crimeEvent);
+        Task Delete(CrimeEvent crimeEvent);
+        Task Save();
     }
 }
