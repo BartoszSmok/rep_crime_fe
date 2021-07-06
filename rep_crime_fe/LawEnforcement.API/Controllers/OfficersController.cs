@@ -29,12 +29,20 @@ namespace LawEnforcement.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("{id}", Name = ("GetById"))]
+        public async Task<ActionResult<LawEnforcmentReadWithFullCasesDto>> GetById([FromRoute] Guid id)
+        {
+            var result = await _service.GetOfficerById(id);
+
+            return Ok(result);
+        }
+
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] LawEnforcmentPostDto dto)
         {
             var officerAddedToDb = await _service.PostOfficer(dto);
-            return Ok();
-            //return CreatedAtRoute(nameof(GetById), new { id = officerAddedToDb.Id }, officerAddedToDb);
+
+            return CreatedAtRoute(nameof(GetById), new { id = officerAddedToDb.Id }, officerAddedToDb);
         }
 
         [HttpPost("{officerId}/event/{crimeEventId}")]
@@ -42,7 +50,6 @@ namespace LawEnforcement.API.Controllers
         {
             await _service.AddOfficerToEvent(crimeEventId, officerId);
             return Ok();
-            //return CreatedAtRoute(nameof(GetById), new { id = officerAddedToDb.Id }, officerAddedToDb);
         }
     }
 }

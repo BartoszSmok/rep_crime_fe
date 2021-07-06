@@ -38,6 +38,12 @@ namespace Crime.API.Services
             return eventDto;
         }
 
+        public async Task<IEnumerable<CrimeEventReadDto>> GetEventByOfficerId(Guid id)
+        {
+            var eventsInDbWithSearchedOfficer = await _repository.GetByOfficerId(id);
+            return _mapper.Map<IEnumerable<CrimeEventReadDto>>(eventsInDbWithSearchedOfficer);
+        }
+
         public async Task<CrimeEventReadDto> PostEvent(CrimeEventPostDto dto)
         {
             if (dto.DateOfCrime == null)

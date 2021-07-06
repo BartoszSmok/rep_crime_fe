@@ -9,7 +9,7 @@ namespace LawEnforcement.API.Profiles
     public interface ILawEnfrocementService
     {
         Task<IEnumerable<LawEnforcmentReadDto>> GetAllOfficers();
-        Task<LawEnforcmentReadDto> GetOfficerById(Guid id);
+        Task<LawEnforcmentReadWithFullCasesDto> GetOfficerById(Guid id);
         Task<LawEnforcmentReadDto> PostOfficer(LawEnforcmentPostDto dto);
         Task AddOfficerToEvent(Guid eventId, Guid officerId);
     }

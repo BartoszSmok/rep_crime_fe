@@ -48,5 +48,10 @@ namespace Crime.API.Data.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<CrimeEvent>> GetByOfficerId(Guid id)
+        {
+            return await _context.CrimeEvents.Find(x => x.AssignedLawEnforcmentId == id).ToListAsync();
+        }
     }
 }

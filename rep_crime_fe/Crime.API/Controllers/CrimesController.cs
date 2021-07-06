@@ -37,6 +37,15 @@ namespace Crime.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("officer/{id}")]
+        public async Task<ActionResult<CrimeEventReadDto>> GetEventsByOfficerId([FromRoute] Guid id)
+        {
+            var result = await _service.GetEventByOfficerId(id);
+
+            return Ok(result);
+        }
+
+
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] CrimeEventPostDto dto)
         {

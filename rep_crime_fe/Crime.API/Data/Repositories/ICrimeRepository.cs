@@ -14,5 +14,6 @@ namespace Crime.API.Data.Repositories
         Task Update(CrimeEvent crimeEvent);
         Task Delete(CrimeEvent crimeEvent);
         Task Save();
+        Task<IEnumerable<CrimeEvent>> GetByOfficerId(Guid id);
     }
 }

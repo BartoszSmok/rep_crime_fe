@@ -5,7 +5,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
 using Common.Dtos;
+using Common.Exceptions;
 using LawEnforcement.API.Data.Repositories;
+using Newtonsoft.Json;
 
 namespace LawEnforcement.API.Profiles
 {
@@ -28,9 +30,20 @@ namespace LawEnforcement.API.Profiles
             return officersDto;
         }
 
-        public Task<LawEnforcmentReadDto> GetOfficerById(Guid id)
+        public async Task<LawEnforcmentReadWithFullCasesDto> GetOfficerById(Guid id)
         {
-            throw new NotImplementedException();
+            var officerInDb = await _repository.GetById(id);
+            if (officerInDb == null)
+                throw new NotFoundException("officer not found");
+
+            var response = await _httpClient.GetAsync($"/api/crimes/officer/{id}");
+            var content = await response.Content.ReadAsStringAsync();
+            var crimeEvents = JsonConvert.DeserializeObject<IEnumerable<CrimeEventReadDto>>(content);
+
+            var officerDto = _mapper.Map<LawEnforcmentReadWithFullCasesDto>(officerInDb);
+            officerDto.AssignedCases = crimeEvents;
+
+            return officerDto;
         }
 
         public async Task<LawEnforcmentReadDto> PostOfficer(LawEnforcmentPostDto dto)
@@ -43,6 +56,10 @@ namespace LawEnforcement.API.Profiles
 
         public async Task AddOfficerToEvent(Guid eventId, Guid officerId)
         {
+            var officerInDb = await _repository.GetById(officerId);
+            if (officerInDb == null)
+                throw new NotFoundException("officer not found");
+
             await _httpClient.PostAsync($"/api/Crimes/{eventId}/officer/{officerId}",null);
         }
     }
