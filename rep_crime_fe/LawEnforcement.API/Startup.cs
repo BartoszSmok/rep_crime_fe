@@ -44,8 +44,8 @@ namespace LawEnforcement.API
 
             services.AddEntityFrameworkCosmos();
             services.AddDbContext<LawEnforcementContext>(options =>
-                options.UseCosmos("AccountEndpoint=https://rep-crime-sql.documents.azure.com:443/;AccountKey=8Zlke8QBz13TTQG0mqkOy0ZnptVYITOzcxRgPcwjtVlOypA8rMRHFztnXNVqHKYluQwhNfbkDNKFAL6obvEFYw==;",
-                    "LawOfficersDB"));
+                options.UseCosmos(Configuration.GetValue<string>("DatabaseSettings:ConnectionString"),
+                    Configuration.GetValue<string>("DatabaseSettings:DatabaseName")));
 
 
             services.AddScoped<ErrorHandlingMiddleware>();

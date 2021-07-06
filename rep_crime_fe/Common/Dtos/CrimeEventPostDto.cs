@@ -13,6 +13,5 @@ namespace Common.Dtos
         public Guid TypeOfCrimeId { get; set; }
         public string PlaceOfCrime { get; set; }
         public string Email { get; set; }
-        public Status Status { get; set; }
     }
 }

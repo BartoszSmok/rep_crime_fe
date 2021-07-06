@@ -49,6 +49,7 @@ namespace Crime.API.Services
             if (dto.DateOfCrime == null)
                 dto.DateOfCrime = DateTime.Now;
             var crimeEventToAdd = _mapper.Map<CrimeEvent>(dto);
+            crimeEventToAdd.Status = Status.Waiting;
             var crimeEventAdded = await _repository.Add(crimeEventToAdd);
             
             return _mapper.Map<CrimeEventReadDto>(crimeEventAdded);
