@@ -43,8 +43,12 @@ namespace Crime.API
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<ICrimeContext, CrimeContext>();
+
             services.AddScoped<ICrimeRepository, CrimeRepository>();
+            services.AddScoped<ITypeRepository, TypeRepository>();
+
             services.AddScoped<ICrimeEventService, CrimeEventService>();
+            services.AddScoped<ITypesOfCrimeServices, TypesOfCrimeServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
