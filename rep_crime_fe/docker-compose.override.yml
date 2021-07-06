@@ -10,6 +10,7 @@ services:
       MSSQL_PID: Express
 
   crime.api:
+    container_name: crimeapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://rep-crime:x9Ly8QcymEylDql38xmLyaPrU9dd5mKHsgpXiFAtcEZleMCg9wFFzukn8sdcw3Yxz25sU18boBug8BSA1oydvQ==@rep-crime.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@rep-crime@"
@@ -17,7 +18,9 @@ services:
       - "13000:80"
 
   lawenforcement.api:
+    container_name: lawenforcementapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - "CrimeAPIUrl=http://crimeapi"
     ports:
       - "13001:80"

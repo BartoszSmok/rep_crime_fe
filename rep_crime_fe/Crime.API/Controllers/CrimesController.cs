@@ -44,7 +44,7 @@ namespace Crime.API.Controllers
             return CreatedAtRoute(nameof(GetById), new { id = crimeEventAddedToDb.Id }, crimeEventAddedToDb);
         }
 
-        [HttpPut("{crimeEventId}/officer/{officerId}")]
+        [HttpPost("{crimeEventId}/officer/{officerId}")]
         public async Task<ActionResult> UpdateWithOfficer([FromRoute] Guid crimeEventId, [FromRoute] Guid officerId)
         {
             await _service.AddEnforcmentOfficerToEvent(crimeEventId, officerId);
@@ -52,7 +52,7 @@ namespace Crime.API.Controllers
             return Ok();
         }
 
-        [HttpPut("{crimeEventId}/status/{status}")]
+        [HttpPost("{crimeEventId}/status/{status}")]
         public async Task<ActionResult> UpdateStatus([FromRoute] Guid crimeEventId, [FromRoute] int status)
         {
             await _service.UpdateStatus(crimeEventId, status);

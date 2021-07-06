@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LawEnforcement.API.Data.Context;
+using LawEnforcement.API.Data.Repositories;
+using LawEnforcement.API.Profiles;
 using Microsoft.EntityFrameworkCore;
 
 namespace LawEnforcement.API
@@ -29,21 +31,30 @@ namespace LawEnforcement.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient("CrimeAPI", client =>
+            {
+                client.BaseAddress = new Uri(Configuration["CrimeAPIUrl"]);
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LawEnforcement.API", Version = "v1" });
             });
+
             services.AddEntityFrameworkCosmos();
             services.AddDbContext<LawEnforcementContext>(options =>
                 options.UseCosmos("AccountEndpoint=https://rep-crime-sql.documents.azure.com:443/;AccountKey=8Zlke8QBz13TTQG0mqkOy0ZnptVYITOzcxRgPcwjtVlOypA8rMRHFztnXNVqHKYluQwhNfbkDNKFAL6obvEFYw==;",
                     "LawOfficersDB"));
 
+
             services.AddScoped<ErrorHandlingMiddleware>();
             services.AddScoped<RequestResponseLoggingMiddleware>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddScoped<ILawEnfrocementRepository, LawEnfrocementRepository>();
+            services.AddScoped<ILawEnfrocementService, LawEnfrocementService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

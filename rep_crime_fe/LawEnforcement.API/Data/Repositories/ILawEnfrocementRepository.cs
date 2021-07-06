@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace LawEnforcement.API.Data.Repositories
 {
-    interface ILawEnfrocementRepository
+    public interface ILawEnfrocementRepository
     {
         Task<IEnumerable<Models.LawEnforcement>> GetAll();
         Task<Models.LawEnforcement> GetById(Guid id);

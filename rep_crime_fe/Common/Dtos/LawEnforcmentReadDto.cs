@@ -12,6 +12,5 @@ namespace Common.Dtos
         public string BadgeId { get; set; }
         public string Agency { get; set; }
         public string Rank { get; set; }
-        public IEnumerable<Guid> AssignedCasesIds { get; set; } = new List<Guid>();
     }
 }

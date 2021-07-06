@@ -15,6 +15,6 @@ namespace Common.Dtos
         public string PlaceOfCrime { get; set; }
         public string Email { get; set; }
         public Status Status { get; set; }
-        public string AssignedLawEnforcmentId { get; set; }
+        public Guid? AssignedLawEnforcmentId { get; set; }
     }
 }
