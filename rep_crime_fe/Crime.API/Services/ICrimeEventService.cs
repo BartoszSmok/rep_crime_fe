@@ -13,5 +13,6 @@ namespace Crime.API.Services
         Task<CrimeEventReadDto> GetEventById(Guid id);
         Task<CrimeEventReadDto> PostEvent(CrimeEventPostDto dto);
         Task AddEnforcmentOfficerToEvent(Guid crimeEventId, Guid officerId);
+        Task UpdateStatus(Guid crimeEventId, int status);
     }
 }

@@ -1,12 +1,6 @@
 version: '3.4'
 
 services:
-  mongosrv2:
-    container_name: mongosrv
-    restart: always
-    ports:
-      - "13017:27017"
-
   msqlsrv:
     ports:
       - "13433:1433"

@@ -16,6 +16,8 @@ namespace Crime.API.Profiles
             CreateMap<CrimeEventReadDto, CrimeEvent>();
             CreateMap<CrimeEventPostDto, CrimeEvent>();
             CreateMap<CrimeEvent, CrimeEventPostDto>();
+            CreateMap<CrimeEventUpdateDto, CrimeEvent>();
+            CreateMap<CrimeEvent, CrimeEventUpdateDto>();
         }
     }
 }

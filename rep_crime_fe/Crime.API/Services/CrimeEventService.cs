@@ -7,6 +7,7 @@ using Common.Dtos;
 using Common.Exceptions;
 using Crime.API.Data.Repositories;
 using Crime.API.Models;
+using Status = Crime.API.Models.Status;
 
 namespace Crime.API.Services
 {
@@ -55,6 +56,16 @@ namespace Crime.API.Services
 
             eventInDb.AssignedLawEnforcmentId = officerId;
 
+            await _repository.Update(eventInDb);
+        }
+
+        public async Task UpdateStatus(Guid crimeEventId, int status)
+        {
+            var eventInDb = await _repository.GetById(crimeEventId);
+            if (eventInDb == null)
+                throw new NotFoundException("Event Not Found");
+            var newStatus = (Status)status;
+            eventInDb.Status = newStatus;
             await _repository.Update(eventInDb);
         }
     }

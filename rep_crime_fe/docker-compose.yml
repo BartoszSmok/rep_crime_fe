@@ -1,9 +1,6 @@
 version: '3.4'
 
 services:
-  mongosrv2:
-    image: mongo
-
   msqlsrv:
     container_name: msqlsrv
     image: mcr.microsoft.com/mssql/server:2019-CU11-ubuntu-20.04

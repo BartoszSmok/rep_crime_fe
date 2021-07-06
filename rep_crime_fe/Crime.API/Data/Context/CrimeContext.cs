@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Crime.API.Data.Seed;
 using Crime.API.Models;
 using MongoDB.Driver;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,7 @@ namespace Crime.API.Data
             var database = client.GetDatabase(configuration.GetValue<string>("DatabaseSettings:DatabaseName"));
             CrimeEvents = database.GetCollection<CrimeEvent>(configuration.GetValue<string>("DatabaseSettings:CollectionName1"));
             TypeOfCrimes = database.GetCollection<TypeOfCrime>(configuration.GetValue<string>("DatabaseSettings:CollectionName2"));
+            CrimeContextSeed.SeedData(TypeOfCrimes);
         }
 
         public IMongoCollection<CrimeEvent> CrimeEvents { get; }

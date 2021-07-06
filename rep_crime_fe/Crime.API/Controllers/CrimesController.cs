@@ -37,10 +37,25 @@ namespace Crime.API.Controllers
             return Ok(result);
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult> Update([FromRoute] Guid crimeEventId, [FromRoute] Guid officerId)
+        [HttpPost]
+        public async Task<ActionResult> Create([FromBody] CrimeEventPostDto dto)
+        {
+            var crimeEventAddedToDb = await _service.PostEvent(dto);
+            return CreatedAtRoute(nameof(GetById), new { id = crimeEventAddedToDb.Id }, crimeEventAddedToDb);
+        }
+
+        [HttpPut("{crimeEventId}/officer/{officerId}")]
+        public async Task<ActionResult> UpdateWithOfficer([FromRoute] Guid crimeEventId, [FromRoute] Guid officerId)
         {
             await _service.AddEnforcmentOfficerToEvent(crimeEventId, officerId);
+
+            return Ok();
+        }
+
+        [HttpPut("{crimeEventId}/status/{status}")]
+        public async Task<ActionResult> UpdateStatus([FromRoute] Guid crimeEventId, [FromRoute] int status)
+        {
+            await _service.UpdateStatus(crimeEventId, status);
 
             return Ok();
         }
