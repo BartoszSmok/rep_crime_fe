@@ -1,3 +1,4 @@
+using Common.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LawEnforcement.API.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace LawEnforcement.API
 {
@@ -32,6 +35,15 @@ namespace LawEnforcement.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LawEnforcement.API", Version = "v1" });
             });
+            services.AddEntityFrameworkCosmos();
+            services.AddDbContext<LawEnforcementContext>(options =>
+                options.UseCosmos("AccountEndpoint=https://rep-crime-sql.documents.azure.com:443/;AccountKey=8Zlke8QBz13TTQG0mqkOy0ZnptVYITOzcxRgPcwjtVlOypA8rMRHFztnXNVqHKYluQwhNfbkDNKFAL6obvEFYw==;",
+                    "LawOfficersDB"));
+
+            services.AddScoped<ErrorHandlingMiddleware>();
+            services.AddScoped<RequestResponseLoggingMiddleware>();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +57,9 @@ namespace LawEnforcement.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseMiddleware<RequestResponseLoggingMiddleware>();
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseRouting();
 

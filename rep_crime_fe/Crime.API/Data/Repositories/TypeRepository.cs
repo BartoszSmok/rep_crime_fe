@@ -20,7 +20,7 @@ namespace Crime.API.Data.Repositories
             return await _context.TypeOfCrimes.Find(x => true).ToListAsync();
         }
 
-        public async Task<TypeOfCrime> GetById(int id)
+        public async Task<TypeOfCrime> GetById(Guid id)
         {
             return await _context.TypeOfCrimes.Find(x => x.Id == id).FirstOrDefaultAsync();
         }

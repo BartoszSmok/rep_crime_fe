@@ -10,7 +10,7 @@ namespace Common.Dtos
     {
         public DateTime? DateOfCrime { get; set; }
         public string Description { get; set; }
-        public int TypeOfCrimeId { get; set; }
+        public Guid TypeOfCrimeId { get; set; }
         public string PlaceOfCrime { get; set; }
         public Status Status { get; set; }
         public Guid AssignedLawEnforcmentId { get; set; }

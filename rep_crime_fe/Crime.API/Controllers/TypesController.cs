@@ -28,8 +28,8 @@ namespace Crime.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id}", Name = ("GetById"))]
-        public async Task<ActionResult<TypeOfCrimeReadDto>> GetById([FromRoute] int id)
+        [HttpGet("{id}", Name = ("GetTypeById"))]
+        public async Task<ActionResult<TypeOfCrimeReadDto>> GetTypeById([FromRoute] Guid id)
         {
             var result = await _service.GetTypeById(id);
 
@@ -40,7 +40,7 @@ namespace Crime.API.Controllers
         public async Task<ActionResult> Create([FromBody] TypeOfCrimePostDto dto)
         {
             var typeOfCrimeAddedToDb = await _service.PostType(dto);
-            return CreatedAtRoute(nameof(GetById), new { id = typeOfCrimeAddedToDb.Id }, typeOfCrimeAddedToDb);
+            return CreatedAtRoute(nameof(GetTypeById), new { id = typeOfCrimeAddedToDb.Id }, typeOfCrimeAddedToDb);
         }
     }
 }

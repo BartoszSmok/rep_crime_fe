@@ -9,7 +9,7 @@ namespace Crime.API.Services
     public interface ITypesOfCrimeServices
     {
         Task<IEnumerable<TypeOfCrimeReadDto>> GetAllTypes();
-        Task<TypeOfCrimeReadDto> GetTypeById(int id);
+        Task<TypeOfCrimeReadDto> GetTypeById(Guid id);
         Task<TypeOfCrimeReadDto> PostType(TypeOfCrimePostDto dto);
     }
 }

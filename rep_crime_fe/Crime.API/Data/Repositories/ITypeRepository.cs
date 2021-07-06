@@ -9,7 +9,7 @@ namespace Crime.API.Data.Repositories
     public interface ITypeRepository
     {
         Task<IEnumerable<TypeOfCrime>> GetAll();
-        Task<TypeOfCrime> GetById(int id);
+        Task<TypeOfCrime> GetById(Guid id);
         Task<TypeOfCrime> Add(TypeOfCrime typeOfCrime);
     }
 }

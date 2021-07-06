@@ -28,8 +28,7 @@ namespace Crime.API.Services
             return typesReadDto;
         }
 
-
-        public async Task<TypeOfCrimeReadDto> GetTypeById(int id)
+        public async Task<TypeOfCrimeReadDto> GetTypeById(Guid id)
         {
             var typeInDb = await _repository.GetById(id);
             if (typeInDb == null)
@@ -37,6 +36,7 @@ namespace Crime.API.Services
             var typeReadDto = _mapper.Map<TypeOfCrimeReadDto>(typeInDb);
             return typeReadDto;
         }
+
 
         public async Task<TypeOfCrimeReadDto> PostType(TypeOfCrimePostDto dto)
         {
