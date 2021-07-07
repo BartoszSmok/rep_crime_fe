@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lawenforcmentapi-deployment
+  labels:
+    app: lawenforcmentapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lawenforcmentapi
+  template:
+    metadata:
+      labels:
+        app: lawenforcmentapi
+    spec:
+      containers:
+        - name: lawenforcmentapi 
+          image: repcrimeacr.azurecr.io/lawenforcmentapi
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "100m"
+            limits:
+              memory: "64Mi"
+              cpu: "200m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: lawenforcmentapi-service  
+spec:
+    type: LoadBalancer
+    selector:
+      app: lawenforcmentapi
+    ports:
+      - protocol: TCP
+        port: 80
