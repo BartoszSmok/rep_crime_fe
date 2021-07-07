@@ -12,7 +12,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '202dc01e-dacd-47b6-86fe-3096d90a8f6a'
-  imageRepository: 'crimeapi'
+  imageRepository: 'lawenforcmentapi'
   containerRegistry: 'repcrimeacr.azurecr.io'
   dockerfilePath: '*/LawEnforcement.API/Dockerfile'
   tag: '$(Build.BuildId)'
