@@ -1,7 +1,9 @@
-apiVersion : apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: crimeapi-deployment 
+  name: crimeapi-deployment
+  labels:
+    app: crimeapi
 spec:
   replicas: 1
   selector:
