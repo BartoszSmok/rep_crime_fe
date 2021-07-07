@@ -3,7 +3,13 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- main
+    branches:
+      include:
+      - main
+    paths:
+      include:
+      - rep_crime_fe/Crime.API/*
+      - manifests/lawenforcmentapi.yaml
 
 resources:
 - repo: self
